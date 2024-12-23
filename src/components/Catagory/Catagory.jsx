@@ -5,7 +5,7 @@ import classes from './catagory.module.css';
 const Catagory = () => {      
     return (
         <div className={classes.catagory_container}>
-        {CatagoryInfo.map((catagory) =>(
+        {CatagoryInfo.map((catagory) => (
           <CatagoryCard data={catagory} />
         ))}
         
