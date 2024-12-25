@@ -4,25 +4,29 @@ import { useParams } from 'react-router-dom';
 import { BaseUrl } from '../../API/ApiEndPoints';
 import ProductCard from '../../components/Product/ProductCard';
 import classes from './results.module.css';
+import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
 const Results = () => { 
   const [results, setResults] = useState([]);
   const { catagoryName } = useParams();
-  // console.log(catagoryName);
+const [isLoading , setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`${BaseUrl}/products/category/${catagoryName}`)
       .then((response) => {
         setResults(response.data);
-        console.log(response.data)
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   },[]);
     
     return (
-        <Layout>
-        <section>
+      <Layout>
+        {isLoading ? (<Loader />) : (
+          <section>
           <h1 style={{padding:"30px"}}>Results </h1>
           <p style={{ padding: "30px" }}>Catagory</p>
           <hr />
@@ -35,6 +39,8 @@ const Results = () => {
               } 
           </div>
          </section>
+        )}
+        
         </Layout>
     );
 }
