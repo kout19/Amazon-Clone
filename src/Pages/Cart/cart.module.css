@@ -1,15 +1,17 @@
 .container{
-  display:flex;
+ display:flex;
   justify-content: center;
   gap:20px;
-  margin-top: 20px;
+  margin: 20px;
+}
+.container div:not(.subtotal){
+height: auto !important;
 }
 .container img{
   width:100px !important;
 }
 .cart_container{
  padding:20px !important;
- margin: 0;
 }
 .cart_container h2,
 .cart_container h3{

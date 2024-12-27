@@ -30,7 +30,7 @@ return (
      <div className={classes.subtotal}>
         <div>
         <p> Subtotal({basket?.length} Items)</p>
-            <CurrencyFormat amount={basket?.reduce((acc, item) => acc + item.price, 0)}
+            <CurrencyFormat amount={basket?.reduce((acc, item) => acc + item.price * item.amount, 0)}
             />
     )
     </div>
