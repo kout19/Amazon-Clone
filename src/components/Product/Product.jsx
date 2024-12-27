@@ -23,7 +23,8 @@ const Product = () => {
         {products && products.map((singleProduct) => (
         <ProductCard
           key={singleProduct.id}
-          product={singleProduct}
+            product={singleProduct}
+            renderAddBtn={true}
         />
       ))
           }

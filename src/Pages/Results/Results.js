@@ -6,10 +6,11 @@ import ProductCard from '../../components/Product/ProductCard';
 import classes from './results.module.css';
 import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
+import CurrencyFormat from '../../components/CurrencyFormat/CurrencyFormat';
 const Results = () => { 
   const [results, setResults] = useState([]);
   const { catagoryName } = useParams();
-const [isLoading , setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     axios.get(`${BaseUrl}/products/category/${catagoryName}`)
@@ -34,7 +35,9 @@ const [isLoading , setIsLoading] = useState(false);
             {results?.map((product) => (
               <ProductCard
                 key={product.id}
-                product={product} />
+                product={product}
+                renderAddBtn={true}
+              />
             ))
               } 
           </div>

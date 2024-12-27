@@ -5,7 +5,7 @@ import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import { DataContext } from '../DataProvider/DataProvider';
 import classes from './product.module.css';
 import { Type } from '../../Utils/action.type';
-const ProductCard = ({ product, flex, renderDsc }) => {
+const ProductCard = ({ product, flex, renderDsc, renderAddBtn }) => {
   const {id, title, image, price, description, rating} = product;
   const [state, dispatch] = useContext(DataContext);
   // console.log(basket);
@@ -39,9 +39,11 @@ const ProductCard = ({ product, flex, renderDsc }) => {
         <div>
           <CurrencyFormat amount={product.price} />
         </div> 
-        <button className={classes.button} onClick={AddToCart}>
+        {renderAddBtn &&
+          <button className={classes.button} onClick={AddToCart}>
           add to cart
-        </button>
+        </button>}
+        
       </div>
     </div>
     
