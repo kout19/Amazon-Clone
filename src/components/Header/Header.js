@@ -8,6 +8,8 @@ import classes from './header.module.css';
 import { DataContext } from '../DataProvider/DataProvider';
 const Header = () => {
   const [{basket}, dispatch] = useContext(DataContext);
+  const total=basket?.reduce((amount,item)=> item.amount+amount,0);
+
   return(
     <section className={classes.fixed}>
       <section className={classes.header_container}>
@@ -72,7 +74,7 @@ const Header = () => {
 
             <BiCart size={35}/>
             {/* icon */}
-            <span>{basket.length}</span>
+            <span>{total}</span>
           </Link>  
         </div>
       </section>

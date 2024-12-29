@@ -27,6 +27,22 @@ export const reducer = (state, action) => {
           basket: updatedBasket,
         }
       }
+      case Type.REMOVE_FROM_BASKET:
+      const existingItemIndex=state.basket.findIndex(item=>item.id===action.id);
+      let newBasket=[...state.basket];
+      if(existingItemIndex>=0){
+        if(newBasket[existingItemIndex].amount===1){
+          newBasket.splice(existingItemIndex,1);
+        }
+        else{
+          newBasket[existingItemIndex]={...newBasket[existingItemIndex],amount:newBasket[existingItemIndex].amount-1};
+        }
+      }
+      return{
+        ...state,
+        basket:newBasket
+      }
+
     default:
       return state;
   }
