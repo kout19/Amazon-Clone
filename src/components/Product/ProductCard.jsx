@@ -19,6 +19,7 @@ const ProductCard = ({ product, flex, renderDsc, renderAddBtn }) => {
       }
     });   
   };  
+  
 
   return (   
     <div className={`${classes.card_container} ${flex ?classes.product_flexed :''} `}>

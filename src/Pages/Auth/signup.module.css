@@ -1,0 +1,76 @@
+.logo_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.logo_container img{
+    width: 100px;
+    object-fit:container;
+}
+.signup_container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:auto;
+    background-color:white;
+}
+.signup_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 400px;
+}
+.signup_form h1{
+    text-align: center;
+}
+.signup_form input{
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+}
+.signin_button{
+    padding: 10px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+.signin_button:hover{
+    background-color: var(--primary-shade);
+}
+.signup_form a{
+    text-align: center;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.signup_form a:hover{
+    text-decoration: underline;
+}
+.signup_form p{
+    text-align: center;
+}
+.signup_form .error{
+    color: red;
+    text-align: center;
+}
+.signup_form .success{
+    color: green;
+    text-align: center;
+}
+.create_account {
+    padding: 10px;
+    border: none;
+    color:black;
+    cursor: pointer;
+}
+.create_account:hover{
+    background-color:lightgray;
+}
+
+
