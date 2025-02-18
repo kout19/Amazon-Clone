@@ -8,6 +8,7 @@ import {Type} from './Utils/action.type.js';
 function App() {
 
 const [{user}, dispatch]=useContext(DataContext);
+console.log(user);
 useEffect(()=>{
   auth.onAuthStateChanged((authUser)=>{
     if(authUser){
