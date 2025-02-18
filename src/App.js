@@ -15,7 +15,7 @@ useEffect(()=>{
             type:Type.SET_USER,
             user:authUser
         });
-        console.log(authuser);
+        console.log(authUser);
         }
     else{
         dispatch({
