@@ -33,7 +33,6 @@ return (
             {basket?.length === 0 ? (<p>Opps ! Your basket is empty</p>) : (
                 basket?.map((item) => {
                     return<section className={classes.cart_item}>
-                    
                     <ProductCard
                         product={item}
                         flex={true}
@@ -67,7 +66,7 @@ return (
         <input type="checkbox" />
         <small>This order contains a gift</small>
     </span>
- <Link to="/payments"> Continue to checkout</Link>          
+ <Link to="/payment"> Continue to checkout</Link>          
     </div>
  )}
 </section>

@@ -23,7 +23,7 @@ useEffect(()=>{
             type:Type.SET_USER,
             user:null
         });
-        consol.log("user not loged in");
+        console.log("user not loged in");
 }
 
   });
