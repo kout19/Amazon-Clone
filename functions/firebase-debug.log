@@ -1,0 +1,64 @@
+[debug] [2025-02-22T10:31:39.865Z] ----------------------------------------------------------------------
+[debug] [2025-02-22T10:31:39.869Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MERN\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only functions
+[debug] [2025-02-22T10:31:39.870Z] CLI Version:   13.31.1
+[debug] [2025-02-22T10:31:39.870Z] Platform:      win32
+[debug] [2025-02-22T10:31:39.870Z] Node Version:  v20.15.0
+[debug] [2025-02-22T10:31:39.870Z] Time:          Sat Feb 22 2025 01:31:39 GMT-0900 (GMT-09:00)
+[debug] [2025-02-22T10:31:39.870Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-22T10:31:40.327Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-22T10:31:40.328Z] > authorizing via signed-in user (koutlook19@gmail.com)
+[info] i  emulators: Starting emulators: functions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions"}}
+[debug] [2025-02-22T10:31:40.347Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-02-22T10:31:40.348Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-02-22T10:31:40.359Z] [hub] writing locator at C:\Users\MERN\AppData\Local\Temp\hub-clone-e96c9.json
+[debug] [2025-02-22T10:31:40.401Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-02-22T10:31:40.401Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-02-22T10:31:40.402Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-02-22T10:31:40.402Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2025-02-22T10:31:40.408Z] defaultcredentials: writing to file C:\Users\MERN\AppData\Roaming\firebase\koutlook19_gmail_com_application_default_credentials.json
+[debug] [2025-02-22T10:31:40.415Z] Setting GAC to C:\Users\MERN\AppData\Roaming\firebase\koutlook19_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\MERN\\AppData\\Roaming\\firebase\\koutlook19_gmail_com_application_default_credentials.json"}}
+[debug] [2025-02-22T10:31:40.416Z] Checked if tokens are valid: true, expires at: 1740223342055
+[debug] [2025-02-22T10:31:40.417Z] Checked if tokens are valid: true, expires at: 1740223342055
+[debug] [2025-02-22T10:31:40.418Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clone-e96c9/adminSdkConfig [none]
+[debug] [2025-02-22T10:31:40.961Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clone-e96c9/adminSdkConfig 200
+[debug] [2025-02-22T10:31:40.961Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clone-e96c9/adminSdkConfig {"projectId":"clone-e96c9","storageBucket":"clone-e96c9.firebasestorage.app"}
+[info] i  functions: Watching "E:\Code Collection\REACT\Amazon-Clone\amazon-clone-1\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"E:\\Code Collection\\REACT\\Amazon-Clone\\amazon-clone-1\\functions\" for Cloud Functions..."}}
+[debug] [2025-02-22T10:31:41.065Z] Validating nodejs source
+[debug] [2025-02-22T10:31:43.457Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "stripe": "^17.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-02-22T10:31:43.457Z] Building nodejs source
+[debug] [2025-02-22T10:31:43.458Z] Failed to find version of module node: reached end of search path E:\Code Collection\REACT\Amazon-Clone\amazon-clone-1\functions\node_modules
+[info] +  functions: Using node@20 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-02-22T10:31:43.464Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-02-22T10:31:43.476Z] Found firebase-functions binary at 'E:\Code Collection\REACT\Amazon-Clone\amazon-clone-1\functions\node_modules\.bin\firebase-functions'

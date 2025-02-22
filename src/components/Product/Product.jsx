@@ -7,7 +7,14 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
+    axios.get('https://fakestoreapi.com/products'
+      , {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: false
+      }
+    )
       .then((res) => {
         setProducts(res.data);
         setIsLoading(false);

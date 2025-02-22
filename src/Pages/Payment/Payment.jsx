@@ -1,18 +1,25 @@
 import React, {useContext,useState} from 'react';  
 import Layout from '../../components/Layout/Layout';
+import {ClipLoader} from 'react-spinners';
 import CurrencyFormate from '../../components/CurrencyFormat/CurrencyFormat';
 import classes from './payment.module.css';
 import {DataContext} from '../../components/DataProvider/DataProvider';
 import ProductCard from '../../components/Product/ProductCard';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
- const Payment = () => {
+import {axiosInstance} from '../../API/axios'; 
+import {db} from '../../Utils/firbase';
+import {collection, doc, setDoc} from "firebase/firestore";
+import {useNavigate} from 'react-router-dom';
+const Payment = () => {
 const [{basket,user},dispatch] = useContext(DataContext);
 const totalItem=basket?.reduce((acc,item)=>{
     return acc+item.amount},0);
     const stripe = useStripe();
     const elements = useElements();
+    const navigate=useNavigate();
     const [succeeded, setSucceeded] = useState(false);
     const [error, setError] = useState(null);
+    const [proccessing, setProccessing] =useState(false);
     const handleChange=(e)=>{
       e?.error?.message ? setError(e.error.message) : setError("");
     }
@@ -21,10 +28,34 @@ const totalItem=basket?.reduce((acc,item)=>{
 const handlePayment = async (e) => {
     e.preventDefault();
     //1. connect to backend function
-    
-
+    try{
+    setProccessing(true);
+    const response= await axiosInstance({
+        method:"post",
+        url:`/payments/create?total=${totalPrice*100}`,
+    });
+    // console.log(response.data);
+    //Setting Up confirmation( Client side)
+    const confirmation = await stripe.confirmCardPayment(
+        response.data.client_secret,{
+            payment_method:{
+                card:elements.getElement(CardElement),
+            }
+        });
+        // console.log(confirmation);
+        // console.log(db);
+        await setDoc(doc(collection(db, "users", user?.uid, "orders")), {
+            basket: basket,
+            amount: confirmation.paymentIntent.amount,
+            created: confirmation.paymentIntent.created,
+          });
+        setProccessing(false);
+        navigate("/orders", {state:{ msg: "You have placed new order"}});
+    }catch(error){
+        console.log(error);
+        setProccessing(false);
+    }
      };
-
 
     return (
         <Layout>    
@@ -64,7 +95,15 @@ const handlePayment = async (e) => {
                     <div className={classes.payment_price}>
                     <p style={{display:"flex", gap:"10px"}}>Order Total: <CurrencyFormate amount={totalPrice}/> </p>
                     </div>
-                    <button>Buy Now</button>
+                    <button type ="submit">
+                        { proccessing ?(
+                            <div className={classes.loading}>
+                            <ClipLoader color={"#fff"} size={15}/>
+                            <p>Proccessing</p>
+                            </div>
+                        ): "Pay Now"
+                       }
+                    </button>
                    </div>
                 </form>
             </div>

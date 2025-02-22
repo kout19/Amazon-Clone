@@ -10,23 +10,23 @@ const app=express();
 app.use(cors({origin:true}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.get("/",(req,res)=>{
+app.get("/",(req, res)=>{
     res.status(200).send("Hello World");
     }
 );
 
-app.post("/payments/create", async(req,res)=>{
-    const total=req.query.total;
+app.post("/payments/create", async (req,res)=>{
+    const total=parseInt(req.query.total);
     if(total>0){
     console.log("Payment Request Received for this amount >>>",total);
     const paymentIntent=await stripe.paymentIntents.create({
         amount:total,
         currency:"usd",
     } );
-    console.log(paymentIntent);
+    console.log(paymentIntent.client_secret);  
     res.status(201).json({
-        message:"Payment Intent Created",
-    });     
+        client_secret:paymentIntent.client_secret,
+    });   
 }
 else{
     res.status(403).send("Invalid Amount");
