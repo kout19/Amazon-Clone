@@ -42,7 +42,6 @@ const Routing = () => {
         <Route path='/catagory/:catagoryName' element={<Results/>} />
       </Routes>
     </Router>
-    
   );
 }
 export default Routing;

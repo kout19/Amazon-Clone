@@ -39,7 +39,7 @@ function Signup() {
         setLoading({...loading, signIn:false});
       }).catch((error) => {
         setLoading({...loading, signIn:false});
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage);
         // console.log(errorCode, errorMessage);

@@ -1,0 +1,30 @@
+.order{
+    background-color: #efeeee;
+    padding:30px;
+}
+.order_container{
+    background-color: #fff;
+    padding: 10px;
+}
+.order_container h2{
+    color: #000;
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
+    padding:20px;
+}
+.order_body{
+    background-color: #fff;
+    padding: 20px;
+}
+.order_body p{
+    font-size: 20px;
+    weight: 700;
+}
+.order_container img{
+    width: 100px !important;
+}
+.order_container div{
+    height: auto !important;
+}
+
+

@@ -8,6 +8,7 @@ import ProductCard from '../../components/Product/ProductCard';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import {axiosInstance} from '../../API/axios'; 
 import {db} from '../../Utils/firbase';
+import {Type} from '../../Utils/action.type';
 import {collection, doc, setDoc} from "firebase/firestore";
 import {useNavigate} from 'react-router-dom';
 const Payment = () => {
@@ -17,7 +18,7 @@ const totalItem=basket?.reduce((acc,item)=>{
     const stripe = useStripe();
     const elements = useElements();
     const navigate=useNavigate();
-    const [succeeded, setSucceeded] = useState(false);
+    // const [succeeded, setSucceeded] = useState(false);
     const [error, setError] = useState(null);
     const [proccessing, setProccessing] =useState(false);
     const handleChange=(e)=>{
@@ -49,6 +50,7 @@ const handlePayment = async (e) => {
             amount: confirmation.paymentIntent.amount,
             created: confirmation.paymentIntent.created,
           });
+        dispatch({type:Type.EMPTY_BASKET});
         setProccessing(false);
         navigate("/orders", {state:{ msg: "You have placed new order"}});
     }catch(error){
