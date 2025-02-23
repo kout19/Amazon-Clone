@@ -1,30 +1,33 @@
 import React, {useState,useContext} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {Type} from '../../Utils/action.type.js';
 import classes from './signup.module.css';
 import {auth} from '../../Utils/firbase';
 import {ClipLoader} from 'react-spinners';
 import {DataContext} from '../../components/DataProvider/DataProvider';
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword} from 'firebase/auth';
+
 function Signup() {
   const [email, setEmail]=useState("");
   const [password, setPassword]=useState("");
   const[{user},dispatch]=useContext(DataContext);
   const [error, setError]=useState("");
+  const navStateData=useLocation();
   const [loading, setLoading]=useState({
     signIn:false,
     signUp:false,
   });
   const navigate= useNavigate();
-  console.log(user);
+  // console.log(navStateData);
+  // console.log(user);
 //  console.log(password, email);
  //Handler Function
  const signupHandler= async(e)=>{
     e.preventDefault();
-    console.log(e.target.name);
+    // console.log(e.target.name);
     if(e.target.name==="signin"){
       setLoading({...loading, signIn:true});
-      navigate("/");
+      navigate(navStateData?.state?.redirect || "/");
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // const user = userCredential.user;
@@ -44,7 +47,6 @@ function Signup() {
   }
   else{
     setLoading({...loading, signUp:true});
-    navigate("/");
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // const user = userCredential.user;
@@ -54,12 +56,13 @@ function Signup() {
         user:userCredential.user
       });  
       setLoading({...loading, signUp:false});
+      navigate(navStateData?.state?.redirect || "/");
   })
   .catch((error) => { 
-    setLoading({...loading, signUp:false});
-    const errorCode = error.code;
+    // const errorCode = error.code;
     const errorMessage = error.message;
     setError(errorMessage);
+    setLoading({...loading, signUp:false});
     // console.log(errorCode, errorMessage);
   }
   );
@@ -76,6 +79,15 @@ function Signup() {
       <div className={classes.signup_container}> 
         <form action="" className={classes.signup_form}>
           <h1>Sign-in</h1>
+          {navStateData?.state?.msg &&(
+            <small
+            style={{color:"red", 
+            fontSize:"12px",
+            textAlign:"center",
+             marginBottom:"10px"}}>
+              {navStateData?.state?.msg}
+              </small>
+          )}
           {/* <label htmlFor="name">Your name</label>
           <input type="text" name="name" id="name" /> */}
           <label htmlFor="email">Email</label>
